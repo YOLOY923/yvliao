@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-section">
+            <img src="images/login.jpg" alt="登录背景">
+        </div>
+        
+        <div class="bottom-section">
+            <div class="login-options">
+                <button class="login-btn active" onclick="switchLoginMode('quick')">快捷登录</button>
+                <button class="login-btn" onclick="switchLoginMode('password')">账号密码</button>
+            </div>
+            
+            <div class="login-form">
+                <div class="input-group">
+                    <span class="prefix">+86</span>
+                    <input type="tel" placeholder="输入手机号">
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" placeholder="短信验证码">
+                    <button class="get-code">获取验证码</button>
+                </div>
+                
+                <button class="submit-btn">登录</button>
+                
+                <div class="terms">
+                    <input type="checkbox" id="agree">
+                    <label for="agree">我已阅读并同意<a href="#">《用户协议》</a>和<a href="#">《隐私政策》</a></label>
+                </div>
+                
+                <div class="other-login">
+                    <div class="other-login-icon">其他</div>
+                    <div class="other-login-icon">方式</div>
+                    <div class="other-login-icon">登录</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLoginMode(mode) {
+            const loginOptions = document.querySelector('.login-options');
+            const buttons = loginOptions.querySelectorAll('.login-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (mode === 'password') {
+                loginOptions.classList.add('password-active');
+                buttons[1].classList.add('active');
+            } else {
+                loginOptions.classList.remove('password-active');
+                buttons[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html> 

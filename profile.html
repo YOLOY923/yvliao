@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 虚拟宠物疗愈平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 用户信息头部 -->
+    <div style="background-color: #F4A4B6; color: white; padding: 20px 15px; position: relative;">
+        <div style="position: absolute; top: 15px; right: 15px; font-size: 20px;">⚙️</div>
+        
+        <div class="d-flex flex-column align-items-center">
+            <img src="images/user-avatar.jpg" alt="用户头像" class="avatar-lg">
+            <h2 style="margin: 10px 0 5px 0;">小糖兔的主人</h2>
+            <p style="margin: 0;">会员等级: 初级疗愈师</p>
+            
+            <div class="d-flex mt-2">
+                <div class="d-flex flex-column align-items-center" style="margin: 0 15px;">
+                    <p class="font-weight-bold" style="margin: 0;">15</p>
+                    <p class="font-sm" style="margin: 5px 0 0 0;">关注</p>
+                </div>
+                <div class="d-flex flex-column align-items-center" style="margin: 0 15px;">
+                    <p class="font-weight-bold" style="margin: 0;">42</p>
+                    <p class="font-sm" style="margin: 5px 0 0 0;">粉丝</p>
+                </div>
+                <div class="d-flex flex-column align-items-center" style="margin: 0 15px;">
+                    <p class="font-weight-bold" style="margin: 0;">128</p>
+                    <p class="font-sm" style="margin: 5px 0 0 0;">治愈值</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 宠物信息卡片 -->
+        <div class="card">
+            <div class="d-flex align-items-center">
+                <img src="images/pet-character.jpg" alt="糖果兔" class="avatar" style="margin-right: 15px;">
+                <div style="flex: 1;">
+                    <div class="d-flex justify-content-between">
+                        <h3 style="margin: 0;">糖果兔</h3>
+                        <span class="badge">Lv.15</span>
+                    </div>
+                    
+                    <div class="mt-2">
+                        <p style="margin: 0 0 5px 0;">亲密度: 78/100</p>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 78%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-1">
+                        <p style="margin: 0 0 5px 0;">心情: 开心</p>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 90%; background-color: #4CAF50;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-outline" style="flex: 1; margin-right: 5px;">查看详情</button>
+                <button class="btn" style="flex: 1; margin-left: 5px;">互动</button>
+            </div>
+        </div>
+        
+        <!-- 用户数据卡片 -->
+        <div class="card">
+            <div class="d-flex justify-content-around text-center">
+                <div>
+                    <p class="font-lg font-weight-bold text-primary" style="margin: 0;">15</p>
+                    <p class="text-muted font-sm" style="margin: 5px 0 0 0;">互动天数</p>
+                </div>
+                
+                <div>
+                    <p class="font-lg font-weight-bold text-primary" style="margin: 0;">5</p>
+                    <p class="text-muted font-sm" style="margin: 5px 0 0 0;">疗愈收藏</p>
+                </div>
+                
+                <div>
+                    <p class="font-lg font-weight-bold text-primary" style="margin: 0;">8</p>
+                    <p class="text-muted font-sm" style="margin: 5px 0 0 0;">社区好友</p>
+                </div>
+                
+                <div>
+                    <p class="font-lg font-weight-bold text-primary" style="margin: 0;">3</p>
+                    <p class="text-muted font-sm" style="margin: 5px 0 0 0;">已解锁服饰</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 情绪记录 -->
+        <h3 class="mt-3 mb-2">情绪日记</h3>
+        <div class="card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 style="margin: 0;">本周情绪变化</h3>
+                <a href="#" class="text-primary font-sm">查看全部</a>
+            </div>
+            
+            <div style="position: relative; height: 100px; margin-top: 15px;">
+                <!-- 情绪曲线图 (简化版) -->
+                <div style="position: absolute; left: 0; bottom: 0; width: 100%; height: 80px; border-bottom: 1px solid #eee; border-left: 1px solid #eee;">
+                    <div style="position: absolute; bottom: 0; left: 0%; width: 14%; height: 50px; border-right: 1px dashed #eee;"></div>
+                    <div style="position: absolute; bottom: 0; left: 14%; width: 14%; height: 50px; border-right: 1px dashed #eee;"></div>
+                    <div style="position: absolute; bottom: 0; left: 28%; width: 14%; height: 50px; border-right: 1px dashed #eee;"></div>
+                    <div style="position: absolute; bottom: 0; left: 42%; width: 14%; height: 50px; border-right: 1px dashed #eee;"></div>
+                    <div style="position: absolute; bottom: 0; left: 56%; width: 14%; height: 50px; border-right: 1px dashed #eee;"></div>
+                    <div style="position: absolute; bottom: 0; left: 70%; width: 14%; height: 50px; border-right: 1px dashed #eee;"></div>
+                    <div style="position: absolute; bottom: 0; left: 84%; width: 14%; height: 50px;"></div>
+                    
+                    <!-- 曲线 -->
+                    <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0;">
+                        <polyline points="7%,50% 21%,40% 35%,60% 49%,30% 63%,20% 77%,45% 91%,25%" style="fill: none; stroke: #F4A4B6; stroke-width: 2;"></polyline>
+                        <!-- 点 -->
+                        <circle cx="7%" cy="50%" r="4" fill="#F4A4B6"></circle>
+                        <circle cx="21%" cy="40%" r="4" fill="#F4A4B6"></circle>
+                        <circle cx="35%" cy="60%" r="4" fill="#F4A4B6"></circle>
+                        <circle cx="49%" cy="30%" r="4" fill="#F4A4B6"></circle>
+                        <circle cx="63%" cy="20%" r="4" fill="#F4A4B6"></circle>
+                        <circle cx="77%" cy="45%" r="4" fill="#F4A4B6"></circle>
+                        <circle cx="91%" cy="25%" r="4" fill="#F4A4B6"></circle>
+                    </svg>
+                </div>
+                
+                <!-- 日期标签 -->
+                <div style="position: absolute; bottom: -20px; left: 0; width: 100%; display: flex; justify-content: space-between; font-size: 10px; color: #888;">
+                    <span>周一</span>
+                    <span>周二</span>
+                    <span>周三</span>
+                    <span>周四</span>
+                    <span>周五</span>
+                    <span>周六</span>
+                    <span>周日</span>
+                </div>
+            </div>
+            
+            <div class="d-flex mt-4 mb-1">
+                <button class="btn btn-block">记录今日心情</button>
+            </div>
+        </div>
+        
+        <!-- 菜单列表 -->
+        <div class="card mt-3">
+            <div style="border-bottom: 1px solid #eee; padding: 10px 0;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <span style="color: #F4A4B6; font-size: 20px; margin-right: 10px;">🧩</span>
+                        <span>宠物装饰</span>
+                    </div>
+                    <span style="color: #888;">›</span>
+                </div>
+            </div>
+            
+            <div style="border-bottom: 1px solid #eee; padding: 10px 0;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <span style="color: #F4A4B6; font-size: 20px; margin-right: 10px;">📊</span>
+                        <span>情绪分析</span>
+                    </div>
+                    <span style="color: #888;">›</span>
+                </div>
+            </div>
+            
+            <div style="border-bottom: 1px solid #eee; padding: 10px 0;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <span style="color: #F4A4B6; font-size: 20px; margin-right: 10px;">🏆</span>
+                        <span>成就与任务</span>
+                    </div>
+                    <span style="color: #888;">›</span>
+                </div>
+            </div>
+            
+            <div style="border-bottom: 1px solid #eee; padding: 10px 0;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <span style="color: #F4A4B6; font-size: 20px; margin-right: 10px;">💬</span>
+                        <span>消息中心</span>
+                    </div>
+                    <div>
+                        <span class="badge" style="background-color: #FF5722;">5</span>
+                        <span style="color: #888; margin-left: 10px;">›</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 10px 0;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <span style="color: #F4A4B6; font-size: 20px; margin-right: 10px;">⚙️</span>
+                        <span>设置</span>
+                    </div>
+                    <span style="color: #888;">›</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="nav-bottom">
+        <a href="index.html" class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div>首页</div>
+        </a>
+        <a href="features.html" class="nav-item">
+            <div class="nav-icon">✨</div>
+            <div>功能</div>
+        </a>
+        <a href="social.html" class="nav-item">
+            <div class="nav-icon">👥</div>
+            <div>社区</div>
+        </a>
+        <a href="profile.html" class="nav-item active">
+            <div class="nav-icon">👤</div>
+            <div>我的</div>
+        </a>
+    </div>
+</body>
+</html> 

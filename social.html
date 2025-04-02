@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区 - 虚拟宠物疗愈平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 style="margin: 0;">治愈社区</h2>
+            <div>
+                <span style="font-size: 22px; margin-left: 15px;">🔍</span>
+                <span style="font-size: 22px; margin-left: 15px;">💬</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 分类标签 -->
+        <div class="tabs">
+            <button class="tab active">推荐</button>
+            <button class="tab">关注</button>
+            <button class="tab">附近</button>
+            <button class="tab">话题</button>
+        </div>
+        
+        <!-- 分享选项 -->
+        <div class="card">
+            <div class="d-flex justify-content-around">
+                <div class="d-flex flex-column align-items-center">
+                    <div style="width: 50px; height: 50px; background-color: #F4A4B6; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 8px;">
+                        <span style="color: white; font-size: 24px;">📷</span>
+                    </div>
+                    <span class="font-sm">发照片</span>
+                </div>
+                
+                <div class="d-flex flex-column align-items-center">
+                    <div style="width: 50px; height: 50px; background-color: #F4A4B6; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 8px;">
+                        <span style="color: white; font-size: 24px;">📝</span>
+                    </div>
+                    <span class="font-sm">写心情</span>
+                </div>
+                
+                <div class="d-flex flex-column align-items-center">
+                    <div style="width: 50px; height: 50px; background-color: #F4A4B6; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 8px;">
+                        <span style="color: white; font-size: 24px;">🎬</span>
+                    </div>
+                    <span class="font-sm">拍视频</span>
+                </div>
+                
+                <div class="d-flex flex-column align-items-center">
+                    <div style="width: 50px; height: 50px; background-color: #F4A4B6; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 8px;">
+                        <span style="color: white; font-size: 24px;">🎁</span>
+                    </div>
+                    <span class="font-sm">看活动</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 社区动态 -->
+        <div class="card">
+            <div class="d-flex align-items-center mb-2">
+                <img src="images/user1.jpg" alt="用户头像" class="avatar-sm" style="margin-right: 10px;">
+                <div style="flex: 1;">
+                    <div class="d-flex justify-content-between">
+                        <p class="font-weight-bold" style="margin: 0;">糖果兔爱好者</p>
+                        <p class="text-muted font-sm" style="margin: 0;">刚刚</p>
+                    </div>
+                    <p class="text-muted font-sm" style="margin: 3px 0 0 0;">宠物爱好者 · 初级疗愈师</p>
+                </div>
+                <button style="border: none; background: none; color: #888;">···</button>
+            </div>
+            
+            <p>今天和糖果兔一起玩了很久，它真的太可爱了！特别是做出蹦跳动作的时候，仿佛所有烦恼都消失了。 #每日疗愈 #萌宠互动</p>
+            
+            <div style="margin: 10px 0;">
+                <img src="images/pet-photo1.jpg" alt="宠物照片" style="width: 100%; border-radius: 10px;">
+            </div>
+            
+            <div class="d-flex justify-content-between" style="border-top: 1px solid #eee; padding-top: 10px;">
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">❤️</span>
+                    <span>125</span>
+                </button>
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">💬</span>
+                    <span>36</span>
+                </button>
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">🔄</span>
+                    <span>分享</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="d-flex align-items-center mb-2">
+                <img src="images/user2.jpg" alt="用户头像" class="avatar-sm" style="margin-right: 10px;">
+                <div style="flex: 1;">
+                    <div class="d-flex justify-content-between">
+                        <p class="font-weight-bold" style="margin: 0;">心灵治愈师</p>
+                        <p class="text-muted font-sm" style="margin: 0;">2小时前</p>
+                    </div>
+                    <p class="text-muted font-sm" style="margin: 3px 0 0 0;">认证心理咨询师 · 高级疗愈师</p>
+                </div>
+                <button style="border: none; background: none; color: #888;">···</button>
+            </div>
+            
+            <p>工作压力大的时候，试试和糖果兔一起做森林冥想场景，效果真的很显著！今天尝试了20分钟，整个人都放松下来了。分享给同样有压力的朋友们~ #减压技巧 #心理健康</p>
+            
+            <div style="margin: 10px 0;">
+                <img src="images/scene-photo.jpg" alt="场景照片" style="width: 100%; border-radius: 10px;">
+            </div>
+            
+            <div class="d-flex justify-content-between" style="border-top: 1px solid #eee; padding-top: 10px;">
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">❤️</span>
+                    <span>238</span>
+                </button>
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">💬</span>
+                    <span>52</span>
+                </button>
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">🔄</span>
+                    <span>分享</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 官方动态 -->
+        <div class="card">
+            <div class="d-flex align-items-center mb-2">
+                <img src="images/official.jpg" alt="官方账号" class="avatar-sm" style="margin-right: 10px;">
+                <div style="flex: 1;">
+                    <div class="d-flex justify-content-between">
+                        <p class="font-weight-bold" style="margin: 0;">官方疗愈团队</p>
+                        <p class="text-muted font-sm" style="margin: 0;">昨天</p>
+                    </div>
+                    <p class="text-muted font-sm" style="margin: 3px 0 0 0;">
+                        <span class="badge" style="background-color: #4CAF50;">官方</span>
+                    </p>
+                </div>
+                <button style="border: none; background: none; color: #888;">···</button>
+            </div>
+            
+            <p>【重要通知】我们为糖果兔添加了全新的互动功能和服装！📢 现在可以和它一起做瑜伽啦！更新应用即可体验~</p>
+            
+            <div style="margin: 10px 0;">
+                <img src="images/update-banner.jpg" alt="更新通知" style="width: 100%; border-radius: 10px;">
+            </div>
+            
+            <div class="d-flex justify-content-between" style="border-top: 1px solid #eee; padding-top: 10px;">
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">❤️</span>
+                    <span>856</span>
+                </button>
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">💬</span>
+                    <span>124</span>
+                </button>
+                <button style="border: none; background: none; display: flex; align-items: center; color: #888;">
+                    <span style="font-size: 18px; margin-right: 5px;">🔄</span>
+                    <span>分享</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 发布按钮 -->
+    <button class="floating-btn">+</button>
+    
+    <!-- 底部导航栏 -->
+    <div class="nav-bottom">
+        <a href="index.html" class="nav-item">
+            <div class="nav-icon">🏠</div>
+            <div>首页</div>
+        </a>
+        <a href="features.html" class="nav-item">
+            <div class="nav-icon">✨</div>
+            <div>功能</div>
+        </a>
+        <a href="social.html" class="nav-item active">
+            <div class="nav-icon">👥</div>
+            <div>社区</div>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <div class="nav-icon">👤</div>
+            <div>我的</div>
+        </a>
+    </div>
+</body>
+</html> 
