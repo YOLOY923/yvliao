@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="mine.css">
+    <!-- 引入字体图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- 用户信息区域 -->
+        <div class="user-info">
+            <div class="user-header">
+                <div class="avatar">
+                    <img src="images/login.jpg" alt="用户头像">
+                </div>
+                <div class="greeting">
+                    <p>Hi, 今天是我们相遇的第520天</p>
+                </div>
+                <div class="actions">
+                    <i class="fas fa-phone-alt"></i>
+                    <i class="fas fa-cog" onclick="window.location.href='login.html'"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 会员成长区域 -->
+        <div class="member-growth">
+            <h3>会员成长</h3>
+            <div class="progress-container">
+                <div class="progress-track">
+                    <div class="progress-point active">
+                        <div class="point"></div>
+                        <span>普卡</span>
+                    </div>
+                    <div class="progress-point active">
+                        <div class="point"></div>
+                        <span>银卡</span>
+                    </div>
+                    <div class="progress-point active">
+                        <div class="point"></div>
+                        <span>金卡</span>
+                    </div>
+                    <div class="progress-point">
+                        <div class="point"></div>
+                        <span>白卡</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 会员卡片 -->
+        <div class="member-card">
+            <div class="card-header">
+                <div class="card-title">普卡</div>
+                <div class="card-subtitle">无折扣</div>
+                <div class="card-menu">
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+            </div>
+            <div class="card-info">
+                <p>2026年4月9号到期</p>
+            </div>
+            <div class="card-number">
+                <p>lg62365597 <i class="fas fa-copy"></i></p>
+            </div>
+        </div>
+
+        <!-- 功能菜单 -->
+        <div class="feature-menu">
+            <div class="feature-row">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <p>店铺</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <p>订单</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <p>购物车</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <p>客服</p>
+                </div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <p>心理测评</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <p>咨询记录</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <p>我的收藏</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <p>浏览记录</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <i class="fas fa-home"></i>
+                <p>首页</p>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-gift"></i>
+                <p>活动</p>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-plus-circle"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-users"></i>
+                <p>社区</p>
+            </div>
+            <div class="nav-item active">
+                <i class="fas fa-user"></i>
+                <p>我的</p>
+            </div>
+        </div>
+        
+        <!-- 底部安全区域 -->
+        <div class="bottom-indicator"></div>
+    </div>
+</body>
+</html> 
