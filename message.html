@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息</title>
+    <style>
+        /* 这里放入所有CSS样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #fff;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .page-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #fff;
+            position: relative;
+        }
+
+        /* 顶部导航样式 */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .tab {
+            font-size: 16px;
+            color: #B75C5C;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            color: #007AFF;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #007AFF;
+        }
+
+        /* 消息类型菜单样式 */
+        .message-types {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 10px;
+            background-color: #fff;
+            width: 100%;
+        }
+
+        .type-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 25%;
+        }
+
+        .type-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .type-icon img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        /* 为每个图标设置不同的背景色 */
+        .type-item:nth-child(1) .type-icon {
+            background-color: #ffe5fc;
+        }
+
+        .type-item:nth-child(2) .type-icon {
+            background-color: #ffd8d8;
+        }
+
+        .type-item:nth-child(3) .type-icon {
+            background-color: #f3f8ff;
+        }
+
+        .type-item:nth-child(4) .type-icon {
+            background-color: #ffffcb;
+        }
+
+        .type-item p {
+            font-size: 12px;
+            color: #B75C5C;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+        }
+
+        /* 消息列表样式 */
+        .message-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 15px;
+            margin-bottom: 60px;
+        }
+
+        .message-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .message-content {
+            flex: 1;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .message-preview {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* 底部导航样式 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 414px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            background-color: #fff;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .nav-item {
+            text-align: center;
+            cursor: pointer;
+            width: 20%; /* 调整宽度以适应5个图标 */
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 6px;
+        }
+
+        .nav-icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        /* 调整活动图标大小 */
+        .nav-item:nth-child(2) .nav-icon img {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* 调整首页图标大小 */
+        .nav-item:nth-child(1) .nav-icon img {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* 调整发布图标大小 */
+        .nav-item:nth-child(3) .nav-icon img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-item.active .nav-icon {
+            background-color: #f1a6a5;
+            width: 36px;
+            height: 36px;
+            margin: -6px auto 4px;
+        }
+
+        .nav-item.active .nav-icon img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-item p {
+            font-size: 12px;
+            color: #8c4646;
+            margin-top: 4px;
+        }
+
+        .nav-item.active p {
+            color: #f1a6a5;
+        }
+
+        /* 交互效果 */
+        .type-item:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+
+        .type-item:active {
+            transform: scale(0.95);
+        }
+
+        .message-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .nav-item:hover {
+            opacity: 0.8;
+        }
+
+        /* 滚动条美化 */
+        .message-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .message-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .message-list::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- 顶部导航 -->
+        <div class="nav-tabs">
+            <div class="tab active">消息</div>
+            <div class="tab">精选</div>
+            <div class="tab">广场</div>
+        </div>
+
+        <!-- 消息类型菜单 -->
+        <div class="message-types">
+            <div class="type-item">
+                <div class="type-icon">
+                    <img src="images/official_message.png" alt="官方消息">
+                </div>
+                <p>官方消息</p>
+            </div>
+            <div class="type-item">
+                <div class="type-icon">
+                    <img src="images/interaction_message.png" alt="互动消息">
+                </div>
+                <p>互动消息</p>
+            </div>
+            <div class="type-item">
+                <div class="type-icon">
+                    <img src="images/system_notice.png" alt="系统通知">
+                </div>
+                <p>系统通知</p>
+            </div>
+            <div class="type-item">
+                <div class="type-icon">
+                    <img src="images/greet.png" alt="打招呼">
+                </div>
+                <p>打招呼</p>
+            </div>
+        </div>
+
+        <!-- 消息列表 -->
+        <div class="message-list">
+            <div class="message-item">
+                <div class="avatar" style="background-color: #E8F5E9"></div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="name">浪漫的猫</div>
+                        <div class="time">19:56</div>
+                    </div>
+                    <div class="message-preview">哈喽 你好呀</div>
+                </div>
+            </div>
+
+            <div class="message-item">
+                <div class="avatar" style="background-color: #FFE4E1"></div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="name">咖啡不加糖</div>
+                        <div class="time">19:49</div>
+                    </div>
+                    <div class="message-preview">今天的心情好糟糕呀</div>
+                </div>
+            </div>
+
+            <div class="message-item">
+                <div class="avatar" style="background-color: #E6E6FA"></div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="name">大白兔</div>
+                        <div class="time">12:56</div>
+                    </div>
+                    <div class="message-preview">听说我们竟然互相关注了，原来你也喜欢我呀</div>
+                </div>
+            </div>
+
+            <div class="message-item">
+                <div class="avatar" style="background-color: #FFF8DC"></div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="name">超级无敌小样</div>
+                        <div class="time">9:45</div>
+                    </div>
+                    <div class="message-preview">我总是担心别人，搞得自己很累</div>
+                </div>
+            </div>
+
+            <div class="message-item">
+                <div class="avatar" style="background-color: #E0FFFF"></div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="name">高冷的呆呆鱼</div>
+                        <div class="time">8:25</div>
+                    </div>
+                    <div class="message-preview">昨天的计划泡汤了</div>
+                </div>
+            </div>
+
+            <div class="message-item">
+                <div class="avatar" style="background-color: #FFE4E1"></div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="name">米米</div>
+                        <div class="time">7:39</div>
+                    </div>
+                    <div class="message-preview">今天也要加油呀</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/home.png" alt="首页">
+                </div>
+                <p>首页</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/activity.png" alt="活动">
+                </div>
+                <p>活动</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/image7.png">
+                </div>
+                            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">
+                    <img src="images/community.png" alt="社区">
+                </div>
+                <p>社区</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile.png" alt="我的">
+                </div>
+                <p>我的</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理顶部标签切换
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 处理消息类型图标点击
+            const typeItems = document.querySelectorAll('.type-item');
+            typeItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const type = this.querySelector('p').textContent;
+                });
+            });
+
+            // 处理消息列表项点击
+            const messageItems = document.querySelectorAll('.message-item');
+            messageItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const name = this.querySelector('.name').textContent;
+                    const preview = this.querySelector('.message-preview').textContent;
+                });
+            });
+
+            // 处理底部导航点击
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    // 如果点击的是首页图标（index === 0）
+                    if (index === 0) {
+                        window.location.href = 'index.html';
+                        return;
+                    }
+                    // 如果点击的是活动图标（index === 1）
+                    if (index === 1) {
+                        window.location.href = 'activity.html';
+                        return;
+                    }
+                    // 如果点击的是我的图标（index === 4）
+                    if (index === 4) {
+                        window.location.href = 'mine.html';
+                        return;
+                    }
+                    
+                    if (!this.classList.contains('active')) {
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

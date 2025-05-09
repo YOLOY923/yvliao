@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活动</title>
+    <link rel="stylesheet" href="activity.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- 顶部状态栏 -->
+        <div class="status-bar">
+            <div class="search-icon">
+                <img src="images/search.png">
+            </div>
+        </div>
+
+        <!-- 用户信息区域 -->
+        <div class="user-info">
+            <div class="user-left">
+                <div class="avatar-section">
+                    <div class="avatar-container">
+                        <img class="avatar" src="images/user.png">
+                    </div>
+                    <div class="user-name">辣条</div>
+                </div>
+                <div class="join-info">已加入蹦蹦家520天，持续呵护9天</div>
+            </div>
+            <div class="user-right">
+                <div class="user-badges">
+                    <div class="play-diary">玩偶日记</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 导航标签 -->
+        <div class="nav-tabs">
+            <div class="tab active">领养记录</div>
+            <div class="tab">心理状态统计</div>
+        </div>
+
+        <!-- 分类标签 -->
+        <div class="category-tabs">
+            <div class="category active">全部</div>
+            <div class="category">专题</div>
+            <div class="category">DIY</div>
+        </div>
+
+        <!-- 玩偶列表 -->
+        <div class="doll-list">
+            <div class="doll-item">
+                <div class="doll-image">
+                    <img src="images/activity2.jpg" alt="蹦蹦">
+                </div>
+                <div class="doll-info">
+                    <div class="doll-name">蹦蹦</div>
+                    <div class="doll-height">48cm</div>
+                    <div class="doll-desc">外柔内韧的乐观主义者，易沮丧但自愈力强，细腻敏感中藏着天马行空的创意</div>
+                    <div class="doll-tags">喜欢帮助他人 讲冷笑话 社交聚会</div>
+                </div>
+            </div>
+
+            <div class="doll-item">
+                <div class="doll-image">
+                    <img src="images/activity1.jpg" alt="小忧">
+                </div>
+                <div class="doll-info">
+                    <div class="doll-name">小忧</div>
+                    <div class="doll-height">56cm</div>
+                    <div class="doll-desc">高敏易碎坚韧，以痛感为创作养料，善将精神危机淬炼成艺术</div>
+                    <div class="doll-tags">喜欢画漫画 收集恶评 面具创作</div>
+                </div>
+            </div>
+
+            <div class="doll-item">
+                <div class="doll-image">
+                    <img src="images/activity3.jpg" alt="吃吃">
+                </div>
+                <div class="doll-info">
+                    <div class="doll-name">屹屹</div>
+                    <div class="doll-height">64cm</div>
+                    <div class="doll-desc">社恐温顿，以苔痕拓静默根系，在植物呼吸间编织无言的共情网</div>
+                    <div class="doll-tags">喜欢植物研究 深夜直播 面具倾诉</div>
+                </div>
+            </div>
+
+            <div class="doll-item">
+                <div class="doll-image">
+                    <img src="images/activity4.jpg" alt="棉棉">
+                </div>
+                <div class="doll-info">
+                    <div class="doll-name">棉棉</div>
+                    <div class="doll-height">46cm</div>
+                    <div class="doll-desc">利他性灼伤却自愈，以奉献为茧及破茧，在过度共情中照亮自我的虹光</div>
+                    <div class="doll-tags">喜欢社区服务 帮人代购 朋友欢聚</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/home.png" alt="首页">
+                </div>
+                <p>首页</p>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">
+                    <img src="images/activity.png" alt="活动">
+                </div>
+                <p>活动</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/image7.png">
+                </div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/community.png" alt="社区">
+                </div>
+                <p>社区</p>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile.png" alt="我的">
+                </div>
+                <p>我的</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理导航标签切换
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 处理分类标签切换
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    categories.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 处理底部导航切换和页面跳转
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    // 如果点击的是首页图标（index === 0）
+                    if (index === 0) {
+                        window.location.href = 'index.html';
+                        return;
+                    }
+                    // 如果点击的是社区图标（index === 3）
+                    if (index === 3) {
+                        window.location.href = 'message.html';
+                        return;
+                    }
+                    // 如果点击的是我的图标（index === 4）
+                    if (index === 4) {
+                        window.location.href = 'mine.html';
+                        return;
+                    }
+                    
+                    if (!this.classList.contains('active')) {
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -48,22 +48,35 @@ body {
     object-fit: cover;
 }
 
-.greeting {
+.user-details {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.greeting {
     font-size: 14px;
     color: #666;
 }
 
 .actions {
     display: flex;
-    gap: 20px;
-    color: #333;
-    font-size: 20px;
+    gap: 15px;
+    color: #999;
+    font-size: 18px;
+    margin-left: auto;
 }
 
 .actions i {
     cursor: pointer;
-    padding: 8px;
+    padding: 6px;
     border-radius: 50%;
     transition: all 0.2s ease;
 }
@@ -71,80 +84,105 @@ body {
 .actions i:hover, .actions i:active {
     background-color: rgba(0, 0, 0, 0.05);
     transform: scale(1.1);
+    color: #666;
 }
 
 /* 会员成长区域 */
 .member-growth {
-    background-color: #fff8f8;
-    border-radius: 15px;
+    background: linear-gradient(to right, #fff0f0, #fff4f4);
+    border-radius: 10px;
     padding: 15px;
     margin: 0 15px 15px;
 }
 
 .member-growth h3 {
     font-size: 16px;
-    color: #333;
+    color: #c36262;
     margin-bottom: 20px;
 }
 
 .progress-container {
     position: relative;
     padding: 0 10px;
+    margin-top: 30px;
+    height: 40px;
 }
 
 .progress-track {
-    display: flex;
-    justify-content: space-between;
     position: relative;
     z-index: 2;
-    margin-bottom: 10px;
+    height: 100%;
+    width: 100%;
 }
 
 .progress-track::before {
     content: '';
     position: absolute;
-    top: 10px;
+    top: 28px;
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #ffcad4;
+    background-color: #e88d8d;
     z-index: -1;
 }
 
 .progress-point {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 5px;
+    text-align: center;
+    width: auto;
+    transform: translateX(-50%);
+}
+
+.progress-point:nth-child(1) {
+    left: 0%;
+    transform: translateX(0);
+}
+
+.progress-point:nth-child(2) {
+    left: 20%;
+}
+
+.progress-point:nth-child(3) {
+    left: 60%;
+}
+
+.progress-point:nth-child(4) {
+    left: 100%;
+    transform: translateX(-100%);
 }
 
 .point {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background-color: #ffcad4;
+    background-color: #e88d8d;
     border: 2px solid #ffffff;
+    margin-top: 5px;
 }
 
 .progress-point.active .point {
-    background-color: #ffb6c1;
+    background-color: #d16e6e;
 }
 
 .progress-point span {
     font-size: 12px;
     color: #666;
+    display: block;
+    white-space: nowrap;
 }
 
 /* 会员卡片 */
 .member-card {
     margin: 0 15px 20px;
-    background-color: #ffb6c1;
-    border-radius: 15px;
+    background-color: #d16e6e;
+    border-radius: 10px;
     padding: 15px;
     color: white;
     position: relative;
-    box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
+    box-shadow: 0 4px 12px rgba(209, 110, 110, 0.3);
 }
 
 .card-header {
@@ -161,9 +199,9 @@ body {
 .card-subtitle {
     margin-left: 10px;
     font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #c36262;
     padding: 2px 10px;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .card-menu {
@@ -173,14 +211,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #c36262;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .card-menu:hover, .card-menu:active {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: #d47777;
     transform: scale(1.1);
 }
 
@@ -233,19 +271,20 @@ body {
 
 .feature-item:hover .feature-icon, .feature-item:active .feature-icon {
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3);
+    box-shadow: 0 4px 8px rgba(132, 28, 15, 0.3);
+    background-color: #ffe0e0;
 }
 
 .feature-icon {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #fff8f8;
+    background-color: #ffcece;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 8px;
-    color: #ffb6c1;
+    color: #841c0f;
     font-size: 20px;
     transition: all 0.2s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -279,31 +318,55 @@ body {
     align-items: center;
     justify-content: center;
     width: 20%;
-    color: #999;
+    color: #841c0f;
     font-size: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
-    padding: 8px 0;
+    position: relative;
+    text-align: center;
 }
 
 .nav-item:hover, .nav-item:active {
-    color: #8b0000;
     transform: translateY(-2px);
 }
 
-.nav-item i {
-    font-size: 20px;
-    margin-bottom: 3px;
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0 auto 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 6px;
 }
 
-.nav-item.active {
-    color: #8b0000;
+.nav-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
-.nav-item:nth-child(3) i {
-    font-size: 36px;
-    color: #ffb6c1;
-    margin-bottom: 0;
+.nav-item p {
+    font-size: 12px;
+    color: #8c4646;
+    margin-top: 4px;
+}
+
+.nav-item.active .nav-icon {
+    background-color: #f1a6a5;
+    width: 36px;
+    height: 36px;
+    margin: -6px auto 4px;
+}
+
+.nav-item.active p {
+    color: #f1a6a5;
+}
+
+.nav-item:nth-child(3) .nav-icon img {
+    width: 32px;
+    height: 32px;
 }
 
 .bottom-indicator {

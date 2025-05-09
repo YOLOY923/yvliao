@@ -16,8 +16,11 @@
                 <div class="avatar">
                     <img src="images/login.jpg" alt="用户头像">
                 </div>
-                <div class="greeting">
-                    <p>Hi, 今天是我们相遇的第520天</p>
+                <div class="user-details">
+                    <div class="user-name">测试昵称</div>
+                    <div class="greeting">
+                        <p>Hi, 今天是我们相遇的第520天</p>
+                    </div>
                 </div>
                 <div class="actions">
                     <i class="fas fa-phone-alt"></i>
@@ -32,20 +35,20 @@
             <div class="progress-container">
                 <div class="progress-track">
                     <div class="progress-point active">
-                        <div class="point"></div>
                         <span>普卡</span>
+                        <div class="point"></div>
                     </div>
                     <div class="progress-point active">
-                        <div class="point"></div>
                         <span>银卡</span>
+                        <div class="point"></div>
                     </div>
                     <div class="progress-point active">
-                        <div class="point"></div>
                         <span>金卡</span>
+                        <div class="point"></div>
                     </div>
                     <div class="progress-point">
-                        <div class="point"></div>
                         <span>白卡</span>
+                        <div class="point"></div>
                     </div>
                 </div>
             </div>
@@ -127,22 +130,32 @@
         <!-- 底部导航 -->
         <div class="bottom-nav">
             <div class="nav-item">
-                <i class="fas fa-home"></i>
+                <div class="nav-icon">
+                    <img src="images/home.png" alt="首页">
+                </div>
                 <p>首页</p>
             </div>
             <div class="nav-item">
-                <i class="fas fa-gift"></i>
+                <div class="nav-icon">
+                    <img src="images/activity.png" alt="活动">
+                </div>
                 <p>活动</p>
             </div>
             <div class="nav-item">
-                <i class="fas fa-plus-circle"></i>
+                <div class="nav-icon">
+                    <img src="images/image7.png">
+                </div>
             </div>
             <div class="nav-item">
-                <i class="fas fa-users"></i>
+                <div class="nav-icon">
+                    <img src="images/community.png" alt="社区">
+                </div>
                 <p>社区</p>
             </div>
             <div class="nav-item active">
-                <i class="fas fa-user"></i>
+                <div class="nav-icon">
+                    <img src="images/profile.png" alt="我的">
+                </div>
                 <p>我的</p>
             </div>
         </div>
@@ -150,5 +163,36 @@
         <!-- 底部安全区域 -->
         <div class="bottom-indicator"></div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理底部导航切换和页面跳转
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    // 如果点击的是首页图标（index === 0）
+                    if (index === 0) {
+                        window.location.href = 'index.html';
+                        return;
+                    }
+                    // 如果点击的是活动图标（index === 1）
+                    if (index === 1) {
+                        window.location.href = 'activity.html';
+                        return;
+                    }
+                    // 如果点击的是社区图标（index === 3）
+                    if (index === 3) {
+                        window.location.href = 'message.html';
+                        return;
+                    }
+                    
+                    if (!this.classList.contains('active')) {
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html> 
