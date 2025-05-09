@@ -8,11 +8,6 @@
 </head>
 <body>
     <div class="page-container">
-        <div class="pull-indicator">
-            <span class="arrow">↓</span>
-            <span class="text">下拉查看完整图片</span>
-        </div>
-        
         <div class="top-section">
             <img src="images/login.jpg" alt="登录背景">
         </div>
@@ -98,8 +93,12 @@
             const pageContainer = document.querySelector('.page-container');
             const bottomSection = document.querySelector('.bottom-section');
             const topSection = document.querySelector('.top-section');
-            const pullIndicator = document.querySelector('.pull-indicator');
             const dragHandle = document.querySelector('.drag-handle');
+            
+            // 初始状态下调整图片位置，向下移动2%
+            const imgElement = topSection.querySelector('img');
+            imgElement.style.objectPosition = 'center 61.7%'; // 从59.7%增加到61.7%
+            imgElement.style.transform = 'translateY(-38.4%)'; // 从-36.4%调整到-38.4%
             
             let startY = 0;
             let currentTranslate = 0;
@@ -121,7 +120,6 @@
                 isDragging = true;
                 bottomSection.style.transition = 'none';
                 topSection.style.transition = 'none';
-                pullIndicator.style.opacity = '1';
             }
             
             // 触摸移动
@@ -148,21 +146,12 @@
                     // 更新图片高度和位置
                     const imgElement = topSection.querySelector('img');
                     const newImgHeight = 177 - (progress * 77); // 从177%过渡到100%
-                    const newImgPosition = 59.7 - (progress * 59.7); // 从59.7%过渡到0%
-                    const newTranslateY = -36.4 + (progress * 36.4); // 从-36.4%过渡到0%
+                    const newImgPosition = 61.7 - (progress * 61.7); // 从61.7%过渡到0%
+                    const newTranslateY = -38.4 + (progress * 38.4); // 从-38.4%过渡到0%
                     
                     imgElement.style.height = `${newImgHeight}%`;
                     imgElement.style.objectPosition = `center ${newImgPosition}%`;
                     imgElement.style.transform = `translateY(${newTranslateY}%)`;
-                    
-                    // 更新提示文本
-                    if (currentTranslate > 80) {
-                        pullIndicator.querySelector('.text').textContent = '释放查看完整图片';
-                        pullIndicator.querySelector('.arrow').textContent = '↑';
-                    } else {
-                        pullIndicator.querySelector('.text').textContent = '下拉查看完整图片';
-                        pullIndicator.querySelector('.arrow').textContent = '↓';
-                    }
                 }
             }
             
@@ -179,22 +168,21 @@
                 
                 // 如果拖动距离足够，展开顶部图片
                 if (currentTranslate > 80) {
-                    bottomSection.style.transform = 'translateY(100%)'; // 将底部区域完全移出视野
+                    // 修改这里，不再将底部区域完全移出视野，保留一点白边
+                    bottomSection.style.transform = 'translateY(calc(100% - 60px))'; // 保留60px高度的白边
                     topSection.style.height = '100vh';
                     imgElement.style.height = '100%';
                     imgElement.style.objectPosition = 'center';
                     imgElement.style.transform = 'translateY(0)';
                     pageContainer.classList.add('expanded');
-                    pullIndicator.style.opacity = '0';
                 } else {
                     // 否则恢复原状
                     bottomSection.style.transform = 'translateY(0)';
                     topSection.style.height = '50vh';
                     imgElement.style.height = '177%';
-                    imgElement.style.objectPosition = 'center 59.7%';
-                    imgElement.style.transform = 'translateY(-36.4%)';
+                    imgElement.style.objectPosition = 'center 61.7%'; // 从59.7%增加到61.7%
+                    imgElement.style.transform = 'translateY(-38.4%)'; // 从-36.4%调整到-38.4%
                     pageContainer.classList.remove('expanded');
-                    pullIndicator.style.opacity = '0.8';
                 }
                 
                 currentTranslate = 0;
@@ -217,11 +205,12 @@
                     bottomSection.style.transform = 'translateY(0)';
                     topSection.style.height = '50vh';
                     imgElement.style.height = '177%';
-                    imgElement.style.objectPosition = 'center 59.7%';
-                    imgElement.style.transform = 'translateY(-36.4%)';
+                    imgElement.style.objectPosition = 'center 61.7%'; // 从59.7%增加到61.7%
+                    imgElement.style.transform = 'translateY(-38.4%)'; // 从-36.4%调整到-38.4%
                     pageContainer.classList.remove('expanded');
                 } else {
-                    bottomSection.style.transform = 'translateY(100%)'; // 将底部区域完全移出视野
+                    // 修改这里，不再将底部区域完全移出视野，保留一点白边
+                    bottomSection.style.transform = 'translateY(calc(100% - 60px))'; // 保留60px高度的白边
                     topSection.style.height = '100vh';
                     imgElement.style.height = '100%';
                     imgElement.style.objectPosition = 'center';
