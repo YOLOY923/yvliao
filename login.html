@@ -138,8 +138,8 @@
                     // 更新底部区域位置
                     bottomSection.style.transform = `translateY(${currentTranslate}px)`;
                     
-                    // 同时增加顶部图片区域的高度
-                    const newTopHeight = 55 + (currentTranslate / window.innerHeight * 100);
+                    // 同时增加顶部图片区域的高度，但不放大图片
+                    const newTopHeight = 55 + (currentTranslate / window.innerHeight * 45); // 最多增加到100%
                     topSection.style.height = `${Math.min(100, newTopHeight)}vh`;
                     
                     // 更新提示文本
@@ -163,7 +163,7 @@
                 
                 // 如果拖动距离足够，展开顶部图片
                 if (currentTranslate > 80) {
-                    bottomSection.style.transform = 'translateY(0)';
+                    bottomSection.style.transform = 'translateY(100%)'; // 将底部区域完全移出视野
                     topSection.style.height = '100vh';
                     pageContainer.classList.add('expanded');
                     pullIndicator.style.opacity = '0';
@@ -184,9 +184,11 @@
                 topSection.style.transition = 'height 0.3s ease';
                 
                 if (pageContainer.classList.contains('expanded')) {
+                    bottomSection.style.transform = 'translateY(0)';
                     topSection.style.height = '55vh';
                     pageContainer.classList.remove('expanded');
                 } else {
+                    bottomSection.style.transform = 'translateY(100%)'; // 将底部区域完全移出视野
                     topSection.style.height = '100vh';
                     pageContainer.classList.add('expanded');
                 }
