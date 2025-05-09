@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="pull-indicator">
+            <span class="arrow">↓</span>
+            <span class="text">下拉查看完整图片</span>
+        </div>
+        
+        <div class="top-section">
+            <img src="images/login.jpg" alt="登录背景">
+        </div>
+        
+        <div class="bottom-section">
+            <div class="drag-handle"></div>
+            
+            <div class="login-options">
+                <button class="login-btn active" onclick="switchLoginMode('quick')">快捷登录</button>
+                <button class="login-btn" onclick="switchLoginMode('password')">账号密码</button>
+            </div>
+            
+            <div class="login-form">
+                <!-- 快捷登录表单 -->
+                <div id="quick-login-form">
+                    <div class="input-group">
+                        <span class="prefix">+86</span>
+                        <input type="tel" placeholder="输入手机号">
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="text" placeholder="短信验证码">
+                        <button class="get-code">获取验证码</button>
+                    </div>
+                </div>
+                
+                <!-- 账号密码登录表单 -->
+                <div id="password-login-form" style="display: none;">
+                    <div class="input-group">
+                        <span class="prefix"><i class="user-icon"></i></span>
+                        <input type="text" placeholder="账号/手机号/邮箱">
+                    </div>
+                    
+                    <div class="input-group">
+                        <span class="prefix"><i class="lock-icon"></i></span>
+                        <input type="password" placeholder="请输入密码">
+                    </div>
+                    
+                    <div class="forgot-password">
+                        <a href="#">忘记密码?</a>
+                    </div>
+                </div>
+                
+                <button class="submit-btn" onclick="window.location.href='mine.html'">登录</button>
+                
+                <div class="terms">
+                    <input type="checkbox" id="agree">
+                    <label for="agree">我已阅读并同意<a href="#">《用户协议》</a>和<a href="#">《隐私政策》</a></label>
+                </div>
+                
+                <div class="other-login">
+                    <div class="other-login-icon">其他</div>
+                    <div class="other-login-icon">方式</div>
+                    <div class="other-login-icon">登录</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLoginMode(mode) {
+            const loginOptions = document.querySelector('.login-options');
+            const buttons = loginOptions.querySelectorAll('.login-btn');
+            const quickLoginForm = document.getElementById('quick-login-form');
+            const passwordLoginForm = document.getElementById('password-login-form');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (mode === 'password') {
+                loginOptions.classList.add('password-active');
+                buttons[1].classList.add('active');
+                quickLoginForm.style.display = 'none';
+                passwordLoginForm.style.display = 'block';
+            } else {
+                loginOptions.classList.remove('password-active');
+                buttons[0].classList.add('active');
+                quickLoginForm.style.display = 'block';
+                passwordLoginForm.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageContainer = document.querySelector('.page-container');
+            const bottomSection = document.querySelector('.bottom-section');
+            const topSection = document.querySelector('.top-section');
+            const pullIndicator = document.querySelector('.pull-indicator');
+            const dragHandle = document.querySelector('.drag-handle');
+            
+            let startY = 0;
+            let currentTranslate = 0;
+            let isDragging = false;
+            let initialBottomHeight;
+            
+            // 初始状态设置
+            function initializeState() {
+                // 获取底部区域初始高度
+                initialBottomHeight = bottomSection.offsetHeight;
+                // 设置顶部图片区域初始高度为55%
+                topSection.style.height = '55vh';
+                pageContainer.classList.remove('expanded');
+            }
+            
+            // 触摸开始
+            function touchStart(e) {
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                bottomSection.style.transition = 'none';
+                topSection.style.transition = 'none';
+                pullIndicator.style.opacity = '1';
+            }
+            
+            // 触摸移动
+            function touchMove(e) {
+                if (!isDragging) return;
+                
+                const currentY = e.touches[0].clientY;
+                const diff = currentY - startY;
+                
+                // 只允许向下拖动
+                if (diff > 0) {
+                    currentTranslate = diff * 0.5; // 添加阻尼效果
+                    
+                    // 更新底部区域位置
+                    bottomSection.style.transform = `translateY(${currentTranslate}px)`;
+                    
+                    // 同时增加顶部图片区域的高度
+                    const newTopHeight = 55 + (currentTranslate / window.innerHeight * 100);
+                    topSection.style.height = `${Math.min(100, newTopHeight)}vh`;
+                    
+                    // 更新提示文本
+                    if (currentTranslate > 80) {
+                        pullIndicator.querySelector('.text').textContent = '释放查看完整图片';
+                        pullIndicator.querySelector('.arrow').textContent = '↑';
+                    } else {
+                        pullIndicator.querySelector('.text').textContent = '下拉查看完整图片';
+                        pullIndicator.querySelector('.arrow').textContent = '↓';
+                    }
+                }
+            }
+            
+            // 触摸结束
+            function touchEnd() {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                bottomSection.style.transition = 'transform 0.3s ease, border-radius 0.3s ease';
+                topSection.style.transition = 'height 0.3s ease';
+                
+                // 如果拖动距离足够，展开顶部图片
+                if (currentTranslate > 80) {
+                    bottomSection.style.transform = 'translateY(0)';
+                    topSection.style.height = '100vh';
+                    pageContainer.classList.add('expanded');
+                    pullIndicator.style.opacity = '0';
+                } else {
+                    // 否则恢复原状
+                    bottomSection.style.transform = 'translateY(0)';
+                    topSection.style.height = '55vh';
+                    pageContainer.classList.remove('expanded');
+                    pullIndicator.style.opacity = '0.8';
+                }
+                
+                currentTranslate = 0;
+            }
+            
+            // 点击拖动条也可以展开/收起
+            dragHandle.addEventListener('click', function() {
+                bottomSection.style.transition = 'transform 0.3s ease, border-radius 0.3s ease';
+                topSection.style.transition = 'height 0.3s ease';
+                
+                if (pageContainer.classList.contains('expanded')) {
+                    topSection.style.height = '55vh';
+                    pageContainer.classList.remove('expanded');
+                } else {
+                    topSection.style.height = '100vh';
+                    pageContainer.classList.add('expanded');
+                }
+            });
+            
+            // 添加事件监听
+            bottomSection.addEventListener('touchstart', touchStart);
+            bottomSection.addEventListener('touchmove', touchMove);
+            bottomSection.addEventListener('touchend', touchEnd);
+            dragHandle.addEventListener('touchstart', touchStart);
+            
+            // 初始化状态
+            initializeState();
+        });
+    </script>
+</body>
+</html> 
