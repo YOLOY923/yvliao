@@ -21,7 +21,7 @@ body {
 }
 
 .top-section {
-    height: 55vh; /* 初始状态显示55%的图片 */
+    height: 50vh; /* 初始状态显示50%的图片 */
     width: 100%;
     position: relative;
     transition: height 0.3s ease;
@@ -30,9 +30,10 @@ body {
 
 .top-section img {
     width: 100%;
-    height: 100%;
+    height: 177%; /* 增加图片高度，使其能显示特定区域 */
     object-fit: cover;
-    object-position: center; /* 居中显示图片 */
+    object-position: center 59.7%; /* 从49.7%调整到59.7%，下移10% */
+    transform: translateY(-36.4%); /* 从-26.4%调整到-36.4%，下移10% */
 }
 
 .bottom-section {
@@ -89,6 +90,12 @@ body {
 /* 展开状态样式 */
 .page-container.expanded .top-section {
     height: 100vh; /* 展开后显示完整图片 */
+}
+
+.page-container.expanded .top-section img {
+    height: 100%; /* 展开后恢复正常高度 */
+    object-position: center; /* 展开后居中显示 */
+    transform: translateY(0); /* 移除变换 */
 }
 
 .page-container.expanded .bottom-section {

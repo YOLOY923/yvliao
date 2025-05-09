@@ -110,8 +110,8 @@
             function initializeState() {
                 // 获取底部区域初始高度
                 initialBottomHeight = bottomSection.offsetHeight;
-                // 设置顶部图片区域初始高度为55%
-                topSection.style.height = '55vh';
+                // 设置顶部图片区域初始高度为50%
+                topSection.style.height = '50vh';
                 pageContainer.classList.remove('expanded');
             }
             
@@ -138,9 +138,22 @@
                     // 更新底部区域位置
                     bottomSection.style.transform = `translateY(${currentTranslate}px)`;
                     
-                    // 同时增加顶部图片区域的高度，但不放大图片
-                    const newTopHeight = 55 + (currentTranslate / window.innerHeight * 45); // 最多增加到100%
-                    topSection.style.height = `${Math.min(100, newTopHeight)}vh`;
+                    // 计算图片过渡效果
+                    const progress = Math.min(1, currentTranslate / 160); // 160px为完全展开的阈值
+                    
+                    // 更新顶部区域高度
+                    const newTopHeight = 50 + (progress * 50); // 从50vh过渡到100vh
+                    topSection.style.height = `${newTopHeight}vh`;
+                    
+                    // 更新图片高度和位置
+                    const imgElement = topSection.querySelector('img');
+                    const newImgHeight = 177 - (progress * 77); // 从177%过渡到100%
+                    const newImgPosition = 59.7 - (progress * 59.7); // 从59.7%过渡到0%
+                    const newTranslateY = -36.4 + (progress * 36.4); // 从-36.4%过渡到0%
+                    
+                    imgElement.style.height = `${newImgHeight}%`;
+                    imgElement.style.objectPosition = `center ${newImgPosition}%`;
+                    imgElement.style.transform = `translateY(${newTranslateY}%)`;
                     
                     // 更新提示文本
                     if (currentTranslate > 80) {
@@ -161,21 +174,35 @@
                 bottomSection.style.transition = 'transform 0.3s ease, border-radius 0.3s ease';
                 topSection.style.transition = 'height 0.3s ease';
                 
+                const imgElement = topSection.querySelector('img');
+                imgElement.style.transition = 'height 0.3s ease, object-position 0.3s ease, transform 0.3s ease';
+                
                 // 如果拖动距离足够，展开顶部图片
                 if (currentTranslate > 80) {
                     bottomSection.style.transform = 'translateY(100%)'; // 将底部区域完全移出视野
                     topSection.style.height = '100vh';
+                    imgElement.style.height = '100%';
+                    imgElement.style.objectPosition = 'center';
+                    imgElement.style.transform = 'translateY(0)';
                     pageContainer.classList.add('expanded');
                     pullIndicator.style.opacity = '0';
                 } else {
                     // 否则恢复原状
                     bottomSection.style.transform = 'translateY(0)';
-                    topSection.style.height = '55vh';
+                    topSection.style.height = '50vh';
+                    imgElement.style.height = '177%';
+                    imgElement.style.objectPosition = 'center 59.7%';
+                    imgElement.style.transform = 'translateY(-36.4%)';
                     pageContainer.classList.remove('expanded');
                     pullIndicator.style.opacity = '0.8';
                 }
                 
                 currentTranslate = 0;
+                
+                // 300ms后移除过渡效果
+                setTimeout(() => {
+                    imgElement.style.transition = '';
+                }, 300);
             }
             
             // 点击拖动条也可以展开/收起
@@ -183,15 +210,29 @@
                 bottomSection.style.transition = 'transform 0.3s ease, border-radius 0.3s ease';
                 topSection.style.transition = 'height 0.3s ease';
                 
+                const imgElement = topSection.querySelector('img');
+                imgElement.style.transition = 'height 0.3s ease, object-position 0.3s ease, transform 0.3s ease';
+                
                 if (pageContainer.classList.contains('expanded')) {
                     bottomSection.style.transform = 'translateY(0)';
-                    topSection.style.height = '55vh';
+                    topSection.style.height = '50vh';
+                    imgElement.style.height = '177%';
+                    imgElement.style.objectPosition = 'center 59.7%';
+                    imgElement.style.transform = 'translateY(-36.4%)';
                     pageContainer.classList.remove('expanded');
                 } else {
                     bottomSection.style.transform = 'translateY(100%)'; // 将底部区域完全移出视野
                     topSection.style.height = '100vh';
+                    imgElement.style.height = '100%';
+                    imgElement.style.objectPosition = 'center';
+                    imgElement.style.transform = 'translateY(0)';
                     pageContainer.classList.add('expanded');
                 }
+                
+                // 300ms后移除过渡效果
+                setTimeout(() => {
+                    imgElement.style.transition = '';
+                }, 300);
             });
             
             // 添加事件监听
